@@ -1,0 +1,17 @@
+.searchContainer{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.searchBoxContainer{
+    display: flex;
+    justify-content: center;
+}
+
+#searchBox{
+    flex-grow: 0.1;
+}
+
+.searchButton{
+}

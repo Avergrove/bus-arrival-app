@@ -1,0 +1,35 @@
+#busArrivalApp{
+    flex-grow: 1;
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+
+}
+
+#busArrivalApp > h1{
+    flex-grow: 0.1;
+}
+
+.busStationContainer{
+    display: flex;
+    flex-direction: column;
+
+    flex-grow: 1;
+    width: 100%;
+
+}
+
+h1 {
+    font-family: 'BebasNeue';
+    font-weight: bold;
+    font-style: italic;
+    font-stretch: ultra-expanded;
+    font-size: 5vw;
+    text-shadow: 1px;
+}
+
+@font-face {
+    font-family: 'BebasNeue';
+    src: local('BebasNeue'), url("./assets/BebasNeue-Regular.ttf") format('truetype');
+}

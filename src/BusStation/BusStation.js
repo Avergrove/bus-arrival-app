@@ -19,12 +19,10 @@ export class BusStation extends Component {
     }
 
     render() {
-
-
         return (
             <div id="busArrivalApp">
                 <h1>BUS ARRIVAL APP</h1>
-                <div class="busStationContainer">
+                <div className="busStationContainer">
                     <SearchForm onBusStationNumberSubmit={this.handleBusStationNumberSubmit}></SearchForm>
                     <ArrivalList isArrivalListReady={this.state.isArrivalListReady} arrivalList={this.state.arrivalList}></ArrivalList>
                 </div>
@@ -33,22 +31,30 @@ export class BusStation extends Component {
     }
 
     handleBusStationNumberSubmit(busStationNumber) {
-        console.log("handleBusStationNumberSubmit- value: " + busStationNumber);
         this.setState({ busStationNumber: busStationNumber }, this.fetchJsonFromLTA);
     }
 
     // Fetches the JSON file from LTA
     fetchJsonFromLTA() {
-        var url = "http://datamall2.mytransport.sg/ltaodataservice/BusArrivalv2?BusStopCode=83139"
-        var url = url.concat("?BusStopCode=" + this.state.busStationNumber);
-        // TODO: Implement true API fetching, also host a cloud function to hide the API key.
-        this.fetchBusArrivalWithDummyData();
 
-        axios.get(url)
+        // Constants
+        var proxyServerURL = "https://us-central1-elite-bird-363603.cloudfunctions.net/googleCorsFunction"; 
+        var localHostURL = "http://localhost:8080";
+
+        var ltaURL = "http://datamall2.mytransport.sg/ltaodataservice/BusArrivalv2"
+        var ltaURL = ltaURL.concat("?BusStopCode=" + this.state.busStationNumber);
+
+        const config = {
+            headers: {
+                "TargetURL": ltaURL
+            }
+        }
+
+        axios.get(localHostURL, config)
             .then(res => {
-                this.setState({arrivalList: res.data})
+                console.log("API has returned results: " + res);
+                this.setState({ arrivalList: res.data, isArrivalListReady: true});
             })
-
     }
 
     // Parses the JSON sample file as provided by LTA and returns as a JSON object
