@@ -29,6 +29,7 @@ export class BusStation extends Component {
             return (
                 <div id="busArrivalApp">
                     <div id="logo">BUS ARRIVAL APP</div>
+                    {this.renderBusStationHint()}
                     <div className="busStationContainer">
                         <SearchForm onBusStationNumberSubmit={this.handleBusStationNumberSubmit}></SearchForm>
                         <div id="arrivalListContainer" className="container">
@@ -47,6 +48,16 @@ export class BusStation extends Component {
 
         else {
             return <div></div>
+        }
+    }
+
+    renderBusStationHint(){
+        if(this.state.busStationNumber === ''){
+            return(<div id="hint">Search for a bus station number (e.g. "12031")</div>);
+        }
+
+        else{
+            return;
         }
     }
 
