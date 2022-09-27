@@ -31,19 +31,21 @@ export class BusStation extends Component {
                     <div id="logo">BUS ARRIVAL APP</div>
                     <div className="busStationContainer">
                         <SearchForm onBusStationNumberSubmit={this.handleBusStationNumberSubmit}></SearchForm>
-                        <ArrivalList isFetching={this.state.isFetchingArrivalList}
-                            isArrivalListReady={this.state.isArrivalListReady}
-                            arrivalList={this.state.arrivalList}
-                            busStation={this.getBusStation(this.state.busStationNumber)}
-                            lastUpdate={this.state.lastUpdate}
-                        ></ArrivalList>
+                        <div id="arrivalListContainer" className="container">
+                            <ArrivalList isFetching={this.state.isFetchingArrivalList}
+                                isArrivalListReady={this.state.isArrivalListReady}
+                                arrivalList={this.state.arrivalList}
+                                busStation={this.getBusStation(this.state.busStationNumber)}
+                                lastUpdate={this.state.lastUpdate}
+                            ></ArrivalList>
+                        </div>
                     </div>
                 </div>
 
             );
         }
 
-        else{
+        else {
             return <div></div>
         }
     }
@@ -53,14 +55,13 @@ export class BusStation extends Component {
         this.setState({
             busStationNumber: bStationNumber,
             isFetchingArrivalList: true
-        }, this.fetchJsonFromLTA);
+        }, this.fetchJsonFromLTA); // Note: Make sure to NOT use a bracket.
     }
 
     // Fetches the JSON file from LTA
     fetchJsonFromLTA() {
         // Constants
         var proxyServerURL = "https://us-central1-elite-bird-363603.cloudfunctions.net/googleCorsFunction";
-        var localHostURL = "http://localhost:8080";
 
         var ltaURL = "http://datamall2.mytransport.sg/ltaodataservice/BusArrivalv2".concat("?BusStopCode=" + this.state.busStationNumber);
 
@@ -70,9 +71,8 @@ export class BusStation extends Component {
             }
         }
 
-        axios.get(localHostURL, config)
+        axios.get(proxyServerURL, config)
             .then(res => {
-                console.log("API has returned results: " + res);
                 this.setState({ arrivalList: res.data, isArrivalListReady: true }, this.setState({ isFetchingArrivalList: false }));
             })
     }
@@ -83,7 +83,7 @@ export class BusStation extends Component {
         setTimeout(() => {
             var data = require('./dummyJSON/BusArrivalDummy.json');
             this.setState({ arrivalList: data, isArrivalListReady: true, lastUpdate: new Date(), isFetchingArrivalList: false });
-        }, 1000);
+        }, 800);
     }
 
     // Retrieves all the bus stations available in Singapore using the provided dummy data.

@@ -5,30 +5,45 @@ import Spinner from "react-bootstrap/Spinner";
 
 export class ArrivalList extends Component {
 
-    constructor(props){
+    constructor(props) {
         super(props);
     }
 
     render() {
         if (!this.props.isArrivalListReady) {
 
-            if(!this.props.isFetching){
-                return <div id="arrivalList">Please enter the bus station number you're at, or <span style={{color: "blue"}}>Locate (Work-in-progress)</span> for one nearby</div>;
+            if (!this.props.isFetching) {
+                return;
             }
 
             else {
-                return <Spinner id="arrivalList" animation="border" role="status" variant="primary"></Spinner>
+                return (
+                    <div className="ArrivalListContainer container">{this.renderSpinner()}</div>
+                )
             }
         }
 
         else {
             return (
-                <div id="arrivalList" className="container">
-                    <div className="lastUpdated">Last updated: {this.props.lastUpdate.toString()}</div>
-                    <div className="busStationTitle">{this.props.busStation.BusStopCode} - {this.props.busStation.Description} , {this.props.busStation.RoadName}</div>
-                    <BusArrivalAccordion busServices={this.props.arrivalList.Services}></BusArrivalAccordion>
-                </div>
+                <div className="ArrivalListContainer container">{this.renderAccordionList()}</div>
             )
         }
+    }
+
+    renderSpinner() {
+        return (
+                <Spinner id="spinner" animation="border" role="status" variant="primary"></Spinner>
+        );
+
+    }
+
+    renderAccordionList() {
+        return (
+            <div>
+                <div className="lastUpdated"> Last updated: {this.props.lastUpdate.toString()}</div>
+                <div className="busStationTitle">{this.props.busStation.BusStopCode} - {this.props.busStation.Description}, {this.props.busStation.RoadName}</div>
+                <div className="BusArrivalAccordion"><BusArrivalAccordion busServices={this.props.arrivalList.Services}></BusArrivalAccordion></div>
+            </div>
+        )
     }
 }

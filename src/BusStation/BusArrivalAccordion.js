@@ -20,9 +20,9 @@ export class BusArrivalAccordion extends Component {
                                 </Accordion.Header>
 
                                 <Accordion.Body>
-                                    <div>{this.getRemainingTime(busService.NextBus.EstimatedArrival)}</div>
-                                    <div>{this.getRemainingTime(busService.NextBus2.EstimatedArrival)}</div>
-                                    <div>{this.getRemainingTime(busService.NextBus3.EstimatedArrival)}</div>
+                                    <div>Next Bus: {this.getRemainingTime(busService.NextBus.EstimatedArrival)}</div>
+                                    <div>Next bus 2: {this.getRemainingTime(busService.NextBus2.EstimatedArrival)}</div>
+                                    <div>Next bus 3: {this.getRemainingTime(busService.NextBus3.EstimatedArrival)}</div>
                                 </Accordion.Body>
                             </Accordion.Item>
                         )
@@ -48,15 +48,19 @@ export class BusArrivalAccordion extends Component {
         }
 
         if (diffDays >= 1) {
-            return `in ${Math.trunc(diffDays)} days`;
+            return `arrives in ${Math.trunc(diffDays)} days`;
         }
 
         else if (diffHours >= 1) {
-            return `in ${Math.trunc(diffHours)} hours`;
+            return `arrives in ${Math.trunc(diffHours)} hours`;
         }
 
         else if (diffMins >= 1) {
-            return `in ${Math.trunc(diffMins)} minutes`;
+            return `arrives in ${Math.trunc(diffMins)} minutes`;
+        }
+
+        else if(time === ""){
+            return "There are no more upcoming buses for this service.";
         }
 
         else {
