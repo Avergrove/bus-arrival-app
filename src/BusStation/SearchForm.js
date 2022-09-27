@@ -17,7 +17,7 @@ export class SearchForm extends Component {
 
     handleSubmit(event) {
         event.preventDefault();
-        this.props.onBusStationNumberSubmit(this.state.value);
+        this.props.onBusStopNumberSubmit(this.state.value);
     }
 
     render() {

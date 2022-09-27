@@ -11,7 +11,7 @@
     flex-grow: 0.1;
 }
 
-.busStationContainer{
+.busStopContainer{
     display: flex;
     flex-direction: column;
 

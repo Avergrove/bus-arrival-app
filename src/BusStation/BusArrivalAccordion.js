@@ -1,6 +1,6 @@
 import { Component } from "react";
 import Accordion from "react-bootstrap/Accordion";
-import { BusStationNumberCapsule } from "./BusStationNumberCapsule";
+import { BusStopNumberCapsule } from "./BusStopNumberCapsule";
 
 /// A class that generates an accordion when given the following properties:
 /// BusServices: A list of bus services
@@ -15,7 +15,7 @@ export class BusArrivalAccordion extends Component {
                             <Accordion.Item eventKey={index} key={index}>
                                 <Accordion.Header>
                                     <div style={{ float: "right" }}>
-                                        <BusStationNumberCapsule busStationNumber={busService.ServiceNo}></BusStationNumberCapsule> {this.getRemainingTime(busService.NextBus.EstimatedArrival)}
+                                        <BusStopNumberCapsule busStopNumber={busService.ServiceNo}></BusStopNumberCapsule> {this.getRemainingTime(busService.NextBus.EstimatedArrival)}
                                     </div>
                                 </Accordion.Header>
 

@@ -10,29 +10,30 @@ export class ArrivalList extends Component {
     }
 
     render() {
-        if (!this.props.isArrivalListReady) {
 
-            if (!this.props.isFetching) {
-                return;
-            }
-
-            else {
-                return (
-                    <div className="ArrivalListContainer container">{this.renderSpinner()}</div>
-                )
-            }
+        if (this.props.isFetching) {
+            return (
+                <div className="ArrivalListContainer container">{this.renderSpinner()}</div>
+            )
         }
 
         else {
-            return (
-                <div className="ArrivalListContainer container">{this.renderAccordionList()}</div>
-            )
+            if (this.props.isArrivalListReady) {
+                return (
+                    <div className="ArrivalListContainer container">{this.renderAccordionList()}</div>
+                )
+            }
+
+            else{
+                return;
+            }
         }
+
     }
 
     renderSpinner() {
         return (
-                <Spinner id="spinner" animation="border" role="status" variant="primary"></Spinner>
+            <Spinner id="spinner" animation="border" role="status" variant="primary"></Spinner>
         );
 
     }
@@ -41,7 +42,7 @@ export class ArrivalList extends Component {
         return (
             <div>
                 <div className="lastUpdated"> Last updated: {this.props.lastUpdate.toString()}</div>
-                <div className="busStationTitle">{this.props.busStation.BusStopCode} - {this.props.busStation.Description}, {this.props.busStation.RoadName}</div>
+                <div className="busStopTitle">{this.props.busStop.BusStopCode} - {this.props.busStop.Description}, {this.props.busStop.RoadName}</div>
                 <div className="BusArrivalAccordion"><BusArrivalAccordion busServices={this.props.arrivalList.Services}></BusArrivalAccordion></div>
             </div>
         )

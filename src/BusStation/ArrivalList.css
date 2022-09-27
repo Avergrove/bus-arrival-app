@@ -8,7 +8,7 @@
     text-align: center;
 }
 
-.ArrivalListContainer > div > .busStationTitle{
+.ArrivalListContainer > div > .busStopTitle{
     font-size: 2.5rem;
     font-weight: bold;
 }
