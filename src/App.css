@@ -1,17 +1,15 @@
 .App {
-
   height: 100%;
   width: 100%;
 }
 
-.container{
+.main-container{
   height: 100%;
   display: flex;
   flex-direction: column;
 }
 
 .main{
-  text-align: center;
   flex: auto;
 
   display: flex;
@@ -37,6 +35,8 @@ header > div {
 }
 
 footer {
+  margin-top: 5vh;
+
   height: 50px;
   display: flex;
 }

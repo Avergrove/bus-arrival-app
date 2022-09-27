@@ -1,0 +1,11 @@
+.BusStationNumberCapsule{
+    background-color: green;
+    color: white;
+    border-radius: 25%;
+
+    display: inline-block;
+    min-width: 40px;
+    min-height: 25px;
+    text-align: center;
+    
+}

@@ -20,13 +20,14 @@
 
 }
 
-h1 {
+#logo {
     font-family: 'BebasNeue';
     font-weight: bold;
     font-style: italic;
     font-stretch: ultra-expanded;
-    font-size: 5vw;
-    text-shadow: 1px;
+    font-size: 100px;
+    text-shadow: 5px;
+    text-align: center;
 }
 
 @font-face {

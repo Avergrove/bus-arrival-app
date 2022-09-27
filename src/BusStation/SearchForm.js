@@ -25,7 +25,7 @@ export class SearchForm extends Component {
             <div className="searchContainer">
                 <form onSubmit={this.handleSubmit}>
                     <div className="searchBoxContainer">
-                        <input id="searchBox" type="text" value={this.state.value} placeholder="Search Bus Station Number" onChange={this.handleChange} />
+                        <input id="searchBox" type="text" value={this.state.value} placeholder="Search Bus Station Number (For example, '20251')" onChange={this.handleChange} />
                         <button className="searchButton" type="submit" value="Submit" ><FaSearch></FaSearch></button>
                     </div>
                 </form>
