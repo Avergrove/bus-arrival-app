@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/bus-arrival-app/static/css/main.21b57dd1.css",
-    "main.js": "/bus-arrival-app/static/js/main.06af1379.js",
+    "main.css": "/bus-arrival-app/static/css/main.be795618.css",
+    "main.js": "/bus-arrival-app/static/js/main.b374df69.js",
     "static/js/787.e33a1ce7.chunk.js": "/bus-arrival-app/static/js/787.e33a1ce7.chunk.js",
     "static/media/BebasNeue-Regular.ttf": "/bus-arrival-app/static/media/BebasNeue-Regular.12e3683f9192436a7be8.ttf",
     "index.html": "/bus-arrival-app/index.html",
-    "main.21b57dd1.css.map": "/bus-arrival-app/static/css/main.21b57dd1.css.map",
-    "main.06af1379.js.map": "/bus-arrival-app/static/js/main.06af1379.js.map",
+    "main.be795618.css.map": "/bus-arrival-app/static/css/main.be795618.css.map",
+    "main.b374df69.js.map": "/bus-arrival-app/static/js/main.b374df69.js.map",
     "787.e33a1ce7.chunk.js.map": "/bus-arrival-app/static/js/787.e33a1ce7.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.21b57dd1.css",
-    "static/js/main.06af1379.js"
+    "static/css/main.be795618.css",
+    "static/js/main.b374df69.js"
   ]
 }
