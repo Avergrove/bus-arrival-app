@@ -8,45 +8,52 @@ export class BusStation extends Component {
 
     constructor(props) {
         super(props);
+        this.handleBusStationNumberSubmit = this.handleBusStationNumberSubmit.bind(this);
+    }
 
-        this.state = {
+    componentDidMount() {
+        this.setState({
             busStationNumber: '',
             arrivalList: {},
             busStations: {},
             isArrivalListReady: false,
             isFetchingArrivalList: false,
             lastUpdate: new Date()
-        };
-        this.handleBusStationNumberSubmit = this.handleBusStationNumberSubmit.bind(this);
-    }
+        });
 
-    componentDidMount(){
         this.fetchBusStationsFromDummyData();
     }
 
     render() {
-        return (
-            <div id="busArrivalApp">
-                <div id="logo">BUS ARRIVAL APP</div>
-                <div className="busStationContainer">
-                    <SearchForm onBusStationNumberSubmit={this.handleBusStationNumberSubmit}></SearchForm>
-                    <ArrivalList isFetching={this.state.isFetchingArrivalList}
-                        isArrivalListReady={this.state.isArrivalListReady}
-                        arrivalList={this.state.arrivalList}
-                        busStation={this.getBusStation(this.state.busStationNumber)}
-                        lastUpdate={this.state.lastUpdate}
+        if (this.state != null) {
+            return (
+                <div id="busArrivalApp">
+                    <div id="logo">BUS ARRIVAL APP</div>
+                    <div className="busStationContainer">
+                        <SearchForm onBusStationNumberSubmit={this.handleBusStationNumberSubmit}></SearchForm>
+                        <ArrivalList isFetching={this.state.isFetchingArrivalList}
+                            isArrivalListReady={this.state.isArrivalListReady}
+                            arrivalList={this.state.arrivalList}
+                            busStation={this.getBusStation(this.state.busStationNumber)}
+                            lastUpdate={this.state.lastUpdate}
                         ></ArrivalList>
+                    </div>
                 </div>
-            </div>
-        );
+
+            );
+        }
+
+        else{
+            return <div></div>
+        }
     }
 
-    handleBusStationNumberSubmit(busStationNumber) {
+    handleBusStationNumberSubmit(bStationNumber) {
         // Configure the fetch between from LTA and from dummy when testing here!
         this.setState({
-            busStationNumber: busStationNumber,
+            busStationNumber: bStationNumber,
             isFetchingArrivalList: true
-        }, this.fetchBusArrivalWithDummyData);
+        }, this.fetchJsonFromLTA);
     }
 
     // Fetches the JSON file from LTA
@@ -63,7 +70,7 @@ export class BusStation extends Component {
             }
         }
 
-        axios.get(proxyServerURL, config)
+        axios.get(localHostURL, config)
             .then(res => {
                 console.log("API has returned results: " + res);
                 this.setState({ arrivalList: res.data, isArrivalListReady: true }, this.setState({ isFetchingArrivalList: false }));
@@ -75,7 +82,7 @@ export class BusStation extends Component {
         // Latency simulation
         setTimeout(() => {
             var data = require('./dummyJSON/BusArrivalDummy.json');
-            this.setState({ arrivalList: data, isArrivalListReady: true, lastUpdate: new Date(), isFetchingArrivalList:false });
+            this.setState({ arrivalList: data, isArrivalListReady: true, lastUpdate: new Date(), isFetchingArrivalList: false });
         }, 1000);
     }
 
@@ -88,12 +95,12 @@ export class BusStation extends Component {
     // Returns the corresponding bus station object given the bus station number from the list.
     getBusStation(busStationNumber) {
         if (this.state.busStations.value !== undefined) {
-            return(this.state.busStations.value.find(busStation => {
+            return (this.state.busStations.value.find(busStation => {
                 return busStation.BusStopCode === busStationNumber
             }));
         }
 
-        else{
+        else {
             return {};
         }
     }
