@@ -36,6 +36,7 @@ export class BusStop extends Component {
                             <ArrivalList isFetching={this.state.isFetchingArrivalList}
                                 isArrivalListReady={this.state.isArrivalListReady}
                                 arrivalList={this.state.arrivalList}
+                                busStopNumber={this.state.busStopNumber}
                                 busStop={this.getBusStop(this.state.busStopNumber)}
                                 lastUpdate={this.state.lastUpdate}
                             ></ArrivalList>
