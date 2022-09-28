@@ -1,16 +1,16 @@
 {
   "files": {
     "main.css": "/bus-arrival-app/static/css/main.95e31108.css",
-    "main.js": "/bus-arrival-app/static/js/main.e2f871bc.js",
+    "main.js": "/bus-arrival-app/static/js/main.501ca77e.js",
     "static/js/787.e33a1ce7.chunk.js": "/bus-arrival-app/static/js/787.e33a1ce7.chunk.js",
     "static/media/BebasNeue-Regular.ttf": "/bus-arrival-app/static/media/BebasNeue-Regular.12e3683f9192436a7be8.ttf",
     "index.html": "/bus-arrival-app/index.html",
     "main.95e31108.css.map": "/bus-arrival-app/static/css/main.95e31108.css.map",
-    "main.e2f871bc.js.map": "/bus-arrival-app/static/js/main.e2f871bc.js.map",
+    "main.501ca77e.js.map": "/bus-arrival-app/static/js/main.501ca77e.js.map",
     "787.e33a1ce7.chunk.js.map": "/bus-arrival-app/static/js/787.e33a1ce7.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.95e31108.css",
-    "static/js/main.e2f871bc.js"
+    "static/js/main.501ca77e.js"
   ]
 }
