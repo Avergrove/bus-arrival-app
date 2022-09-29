@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { ArrivalList } from "./ArrivalList";
 import { SearchForm } from "./SearchForm";
+import BusStopBO from './businessObjects/BusStopBO'
 import './BusStop.css';
 import axios from 'axios';
 
@@ -52,12 +53,12 @@ export class BusStop extends Component {
         }
     }
 
-    renderBusStopHint(){
-        if(this.state.busStopNumber === ''){
-            return(<div id="hint">Search for a bus station number (e.g. "12031")</div>);
+    renderBusStopHint() {
+        if (this.state.busStopNumber === '') {
+            return (<div id="hint">Search for a bus station number (e.g. "12031")</div>);
         }
 
-        else{
+        else {
             return;
         }
     }
@@ -72,30 +73,20 @@ export class BusStop extends Component {
 
     // Fetches the JSON file from LTA
     fetchJsonFromLTA() {
-        // Constants
-        var proxyServerURL = "https://us-central1-elite-bird-363603.cloudfunctions.net/googleCorsFunction";
-
-        var ltaURL = "http://datamall2.mytransport.sg/ltaodataservice/BusArrivalv2".concat("?BusStopCode=" + this.state.busStopNumber);
-
-        const config = {
-            headers: {
-                "TargetURL": ltaURL
-            }
-        }
-
-        axios.get(proxyServerURL, config)
-            .then(res => {
-                this.setState({ arrivalList: res.data, isArrivalListReady: true }, this.setState({ isFetchingArrivalList: false }));
-            })
+        BusStopBO.fetchBusArrivalFromLTA(this.state.busStopNumber).then((data) => {
+            this.setState({ arrivalList: data, isArrivalListReady: true }, this.setState({ isFetchingArrivalList: false }))
+        })
     }
 
     // Parses the JSON sample file as provided by LTA and returns as a JSON object
     fetchBusArrivalWithDummyData() {
-        // Latency simulation
-        setTimeout(() => {
-            var data = require('./dummyJSON/BusArrivalDummy.json');
-            this.setState({ arrivalList: data, isArrivalListReady: true, lastUpdate: new Date(), isFetchingArrivalList: false });
-        }, 800);
+        BusStopBO.fetchBusArrivalWithDummyData().then((data) => this.setState({
+            arrivalList: data,
+            isArrivalListReady: true,
+            lastUpdate: new Date(),
+            isFetchingArrivalList: false
+        })
+        )
     }
 
     // Retrieves all the bus stations available in Singapore using the provided dummy data.
